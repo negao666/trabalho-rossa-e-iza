@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rossa e Iza Lanches</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff6347;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #ff6347;
+            color: white;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        #output, #resultado {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            color: #333;
+        }
+        hr {
+            margin: 40px 0;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Bem-vindo à Rossa e Iza Lanches!</h1>
+    
+    <!-- Seção de Pedidos -->
+    <h2>Escolha um item do menu:</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Item</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Suco</td>
+                <td>R$ 5,00</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Água Gelada</td>
+                <td>R$ 2,00</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Sorvete</td>
+                <td>R$ 7,00</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Hambúrguer</td>
+                <td>R$ 15,00</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Batata Frita</td>
+                <td>R$ 10,00</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Refrigerante</td>
+                <td>R$ 4,00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Chamar o Garçom:</h2>
+    <button onclick="confirmarGarcom()">Chamar o Garçom</button>
+    <button onclick="pedir()">Peça o que desejar de nosso cardápio</button>
+    <div id="output"></div>
+
+    <hr> <!-- Separador -->
+
+    <!-- Seção de Contagem -->
+    <h2>Contador</h2>
+    <label for="numero">Escolha um número:</label>
+    <input type="number" id="numero" min="1" required>
+    <button onclick="contarWhile()">Contando usando WHILE</button>
+    <button onclick="contarFor()">Contando usando FOR</button>
+
+    <h2>Resultado:</h2>
+    <div id="resultado"></div>
+
+    <script>
+        // Função para pedir um item
+        function pedir() {
+            var valor = prompt("Digite uma opção de 1 a 7");
+
+            switch (Number(valor)) {
+                case 1:
+                    confirmacao("Suco");
+                    break;
+                case 2:
+                    confirmacao("Água Gelada");
+                    break;
+                case 3:
+                    confirmacao("Sorvete");
+                    break;
+                case 5:
+                    confirmacao("Hambúrguer");
+                    break;
+                case 6:
+                    confirmacao("Batata Frita");
+                    break;
+                case 7:
+                    confirmacao("Refrigerante");
+                    break;
+                default:
+                    alert("Esse item não existe, por favor escolha algo que tenha no nosso menu.");
+                    break;
+            }
+        }
+
+        // Função para confirmação do pedido
+        function confirmacao(item) {
+            var confirmar = confirm("Você selecionou o item " + item + ", deseja confirmar?");
+            if (confirmar) {
+                alert("Pedido confirmado!!! Apenas espere alguns minutos.");
+            } else {
+                alert("Pedido cancelado.");
+            }
+        }
+
+        // Função para chamar o garçom
+        function confirmarGarcom() {
+            var confirmar = confirm("Gostaria de confirmar a chamada do garçom?");
+            if (confirmar) {
+                alert("Garçon chamado, apenas espere um minuto.");
+            } else {
+                alert("Chamada de garçon cancelada.");
+            }
+        }
+
+        // Função para contagem usando WHILE
+        function contarWhile() {
+            const numero = parseInt(document.getElementById('numero').value);
+            let resultado = '';
+
+            if (isNaN(numero) || numero < 1) {
+                alert("Por favor, insira um número válido.");
+                return;
+            }
+
+            let i = 1;
+            while (i <= numero) {
+                resultado += i + '<br>'; // Adiciona uma quebra de linha após cada número
+                i++;
+            }
+            document.getElementById('resultado').innerHTML += '<strong>Contagem usando WHILE:</strong><br>' + resultado + '<br>';
+        }
+
+        // Função para contagem usando FOR
+        function contarFor() {
+            const numero = parseInt(document.getElementById('numero').value);
+            let resultado = '';
+
+            if (isNaN(numero) || numero < 1) {
+                alert("Por favor, insira um número válido.");
+                return;
+            }
+
+            for (let j = 1; j <= numero; j++) {
+                resultado += j + '<br>'; // Adiciona uma quebra de linha após cada número
+            }
+            document.getElementById('resultado').innerHTML += '<strong>Contagem usando FOR:</strong><br>' + resultado + '<br>';
+        }
+    </script>
+
+</body>
+</html>
