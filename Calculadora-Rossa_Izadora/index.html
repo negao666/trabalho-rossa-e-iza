@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Calculadora de IMC</h1>
+    <form id="imcForm">
+        <label>Informe seu Peso</label>
+        <input type="text" name="peso" id="peso" placeholder="Exemplo 65.7"><br><br>
+
+        <label>Informe a sua Altura</label>
+        <input type="text" name="altura" id="altura" placeholder="Exemplo 1.90"><br><br>
+
+        <input type="submit" value="Calcular IMC">
+    </form>
+
+    <div id="resultado"></div>
+
+    <script src="index.js"></script>
+
+    <script>
+        document.getElementById('imcForm').addEventListener('submit', calcularIMC);
+
+        function calcularIMC(event) {
+            event.preventDefault();
+
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+
+            // Validação de entrada
+            if (isNaN(peso) || isNaN(altura) || altura <= 0) {
+                alert('Por favor, insira valores válidos para peso e altura.');
+                return;
+            }
+
+            // Cálculo do IMC
+            const imc = peso / (altura * altura);
+            let classificacao = '';
+
+            // Classificação do IMC
+            if (imc < 18.5) {
+                classificacao = 'Abaixo do peso';
+            } else if (imc < 24.9) {
+                classificacao = 'Peso normal';
+            } else if (imc < 29.9) {
+                classificacao = 'Sobrepeso';
+            } else {
+                classificacao = 'Obesidade';
+            }
+
+            // Exibição do resultado
+            document.getElementById('resultado').innerText = `Seu IMC é: ${imc.toFixed(2)} (${classificacao})`;
+        }
+    </script>
+</body>
+
+</html>
+
+
