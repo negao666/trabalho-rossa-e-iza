@@ -18,13 +18,12 @@
 
 // outro temporizador
 
-function acao2(){
-    document.write("Executando com o setTimeout! ...")
+function acao2() {
+    document.write("Executando com o setTimeout! ...<br/>");
 }
 
+setTimeout(acao2, 3000);
 
-setTimeout(acao2,3000)
-
-setTimeout((=>){
-    document.write("Exeecutando com arrom function")
-},4000)
+setTimeout(() => {
+    document.write("Executando com arrow function");
+}, 4000);
